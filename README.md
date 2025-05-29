@@ -170,9 +170,10 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 
 
 ## Postman Collection
-To test the API endpoints interactively, you can use my Postman Collection:
+🔗 [Click here to open in Postman]([https://www.postman.com/collections/abc123xyz](https://www.postman.com/supply-cosmologist-86813505/workspace/insider-backend-workspace/collection/36875182-53d01ea1-30f7-4869-bf5e-b6aeaa4b8821?action=share&creator=36875182))
 
-🔗 [Click here to open in Postman]([https://www.postman.com/your-link](https://www.postman.com/supply-cosmologist-86813505/workspace/insider-backend-workspace/collection/36875182-53d01ea1-30f7-4869-bf5e-b6aeaa4b8821?action=share&creator=36875182))
+```
+This Postman Collection contains all the essential endpoints required to simulate and manage the football league backend.
 
 ### Included Endpoints:
 
@@ -186,6 +187,7 @@ To test the API endpoints interactively, you can use my Postman Collection:
 | POST   | /reset-matches          | Reset all match scores and flags |
 | POST   | /change-match-result    | Manually override a match result |
 
+```
 
 
 
