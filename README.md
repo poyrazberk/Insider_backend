@@ -1,5 +1,3 @@
-# Insider_backend
-
 # Insider Backend – Football League Simulation (Go + Gin)
 
 A lightweight backend that **simulates a 4-team Premier-League-style mini-league**, updates the table week-by-week, and estimates championship probabilities via Monte-Carlo after Week 4.
