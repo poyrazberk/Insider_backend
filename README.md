@@ -20,8 +20,8 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 | **Simulation** | Plays 6 weeks (double round-robin) based on team strengths. |
 | **Interface-based design** | `TeamService`, `MatchService` interfaces + concrete services (`MyTeamService`, `MyMatchService`). |
 | **Struct composition** | Services embed `*sql.DB` and depend on interfaces, not concrete types. |
-| **Monte-Carlo champion odds** | 15 000 simulations of the remaining schedule; results rounded to one decimal. |
-| **Result editing** | `/change-match-result` reverts old stats, applies new score, recalculates table + probabilities. |
+| **Monte-Carlo champion odds** | 15 000 simulations of the remaining schedule; results rounded to three decimal. |
+| **Result editing** | `/change-match-result` reverts old stats, applies new score, recalculates table + probabilities (if changed match's week > 3). |
 | **Reset helpers** | `/reset-teams`, `/reset-matches` for a clean slate. |
 | **Postman ready** | Full collection supplied for quick testing. |
 
