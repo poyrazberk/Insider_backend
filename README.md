@@ -19,7 +19,7 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 
 ---
 
-## Features
+## 1.Features
 | Category | Description |
 |----------|-------------|
 | **Simulation** | Plays 6 weeks (double round-robin) based on team strengths. |
@@ -32,7 +32,7 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 
 ---
 
-## Tech Stack & Architecture
+## 2.Tech Stack & Architecture
 | Layer | Tech / Pattern |
 |-------|----------------|
 | Language | Go 1.22 |
@@ -42,9 +42,9 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 | Simulation | Pure in-memory logic → zero DB I/O per Monte-Carlo run |
 
 
-## Setup & Run Locally  
+## 3.Setup & Run Locally  
 
-### 1. Prerequisites  
+### 3.1 Prerequisites  
 | Tool | Version | Notes |
 |------|---------|-------|
 | **Go** | 1.22 or later | https://go.dev/dl  
@@ -55,7 +55,7 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 
 ---
 
-### 2. Clone the repository  
+### 3.2 Clone the repository  
 
 ```bash
 git clone https://github.com/<poyrazberk>/Insider_backend.git
@@ -63,7 +63,7 @@ cd Insider_backend
 go run .
 ```
 
-## 🗄️ Database Schema (SQL)
+## 4. Database Schema (SQL)
 
 ```sql
 -- Drop old tables if they exist
@@ -138,7 +138,7 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 ('Manchester City', 'Manchester United', 4, 1, 6, false),
 ('Leicester City', 'Liverpool', 3, 2, 6, false);
 ```
-## API Endpoints 
+## 5API Endpoints 
 
 ### GET /teams
  Lists all teams and their current statistics (win/lose/draw counts, points, ids, and names)
@@ -169,7 +169,7 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 }
 
 
-## Postman Collection
+## 6.Postman Collection
 🔗 [Click here to open in Postman](https://www.postman.com/supply-cosmologist-86813505/workspace/insider-backend-workspace/collection/36875182-53d01ea1-30f7-4869-bf5e-b6aeaa4b8821?action=share&creator=36875182)
 
 ```
