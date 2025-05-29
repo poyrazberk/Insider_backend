@@ -13,9 +13,6 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 4. [Database Schema (SQL)](#-database-schema-sql)  
 5. [API Endpoints](#-api-endpoints)  
 6. [Postman Collection](#-postman-collection)  
-7. [Code Structure](#-code-structure)  
-8. [How Probabilities Are Calculated](#-how-probabilities-are-calculated)  
-9. [Extras / Future Work](#-extras--future-work)
 
 ---
 
