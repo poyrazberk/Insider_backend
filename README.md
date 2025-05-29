@@ -140,96 +140,32 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 ```
 
 
-GET /teams
-# Lists all teams and their current statistics
-# Response:
-[
-  {
-    "id": 1,
-    "name": "Manchester United",
-    "strength": 68,
-    "points": 6,
-    "goals_for": 5,
-    "goals_against": 3,
-    "goal_diff": 2,
-    "wins": 2,
-    "draws": 0,
-    "losses": 0
-  },
-  ...
-]
+# GET /teams
+ Lists all teams and their current statistics (win/lose/draw counts, points, ids, and names)
 
-GET /matches
-# Lists all matches including their results if played
-# Response:
-[
-  {
-    "id": 1,
-    "name_home": "Manchester United",
-    "name_away": "Liverpool",
-    "home_team_id": 1,
-    "away_team_id": 2,
-    "home_goals": 2,
-    "away_goals": 1,
-    "week": 1,
-    "played": true
-  },
-  ...
-]
+# GET /matches
+ Lists all matches including their results if played
 
-POST /play-week
-# Plays the next unplayed week and returns updated standings and, if available, championship probabilities
-# Response:
-{
-  "message": "Week 4 played successfully",
-  "standings": [...],
-  "championship_probabilities": {
-    "1": 12.5,
-    "2": 45.1,
-    "3": 0.0,
-    "4": 42.4
-  }
-}
+# POST /play-week
+ Plays the next unplayed week and returns updated standings and, if available, championship probabilities
 
-POST /play-all
-# Plays all remaining weeks and returns results week-by-week
-# Response:
-{
-  "message": "All matches played successfully",
-  "weeks": [
-    {
-      "week": 4,
-      "standings": [...]
-    },
-    ...
-  ]
-}
+# POST /play-all
+ Plays all remaining weeks and returns results week-by-week
 
-POST /reset-teams
-# Resets all team statistics (points, goals, wins, etc.)
-# Response:
-{
-  "message": "Teams reset successfully"
-}
 
-POST /reset-matches
-# Resets all matches (clears goals and sets played to false)
-# Response:
-{
-  "message": "Matches reset successfully"
-}
+# POST /reset-teams
+ Resets all team statistics (points, goals, wins, etc.)
 
-PUT /update-match
-# Manually updates a specific match’s score
-# Request Body:
+# POST /reset-matches
+ Resets all matches (clears goals and sets played to false)
+
+# PUT /update-match
+ Manually updates a specific match’s score
+ Request Body:
 {
   "match_id": 3,
   "home_goals": 2,
   "away_goals": 1
-}
-# Response:
-{
-  "message": "Match updated successfully"
 }
 
 
