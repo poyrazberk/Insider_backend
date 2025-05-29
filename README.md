@@ -133,6 +133,12 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 ('Manchester City', 'Manchester United', 4, 1, 6, false),
 ('Leicester City', 'Liverpool', 3, 2, 6, false);
 ```
+
+![teams Table](images/SQLschema_teams_tables.png)
+
+![matches Table](images/SQLschema_matches_tables.png)
+
+
 ## 5.API Endpoints 
 
 ### GET /teams
