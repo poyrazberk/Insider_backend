@@ -169,6 +169,22 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 }
 
 
+## Postman Collection
+To test the API endpoints interactively, you can use my Postman Collection:
+
+🔗 [Click here to open in Postman]([https://www.postman.com/your-link](https://www.postman.com/supply-cosmologist-86813505/workspace/insider-backend-workspace/collection/36875182-53d01ea1-30f7-4869-bf5e-b6aeaa4b8821?action=share&creator=36875182))
+
+### Included Endpoints:
+
+| Method | Endpoint                | Description |
+|--------|-------------------------|-------------|
+| GET    | /teams                  | Fetch current team standings |
+| GET    | /matches                | Get all match fixtures |
+| POST   | /play-week              | Simulate the next unplayed week |
+| POST   | /play-all               | Simulate the rest of the season |
+| POST   | /reset-teams            | Reset all team statistics |
+| POST   | /reset-matches          | Reset all match scores and flags |
+| POST   | /change-match-result    | Manually override a match result |
 
 
 
