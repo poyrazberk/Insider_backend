@@ -65,6 +65,9 @@ go run .
 
 ## Database Schema (SQL)
 
+## 🗄️ Database Schema (SQL)
+
+```sql
 DROP TABLE IF EXISTS matches;
 DROP TABLE IF EXISTS teams;
 
@@ -96,10 +99,41 @@ CREATE TABLE matches (
 );
 
 INSERT INTO teams (name, strength) VALUES
-('Manchester United', 68),
-('Liverpool',         98),
-('Leicester City',    55),
-('Manchester City',   84);
+  ('Manchester United', 68),
+  ('Liverpool', 98),
+  ('Leicester City', 55),
+  ('Manchester City', 84);
+
+-- Week 1
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester United', 'Liverpool', 1, 2, 1, false),
+('Leicester City', 'Manchester City', 3, 4, 1, false);
+
+-- Week 2
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester United', 'Leicester City', 1, 3, 2, false),
+('Liverpool', 'Manchester City', 2, 4, 2, false);
+
+-- Week 3
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester United', 'Manchester City', 1, 4, 3, false),
+('Liverpool', 'Leicester City', 2, 3, 3, false);
+
+-- Week 4
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Liverpool', 'Manchester United', 2, 1, 4, false),
+('Manchester City', 'Leicester City', 4, 3, 4, false);
+
+-- Week 5
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Leicester City', 'Manchester United', 3, 1, 5, false),
+('Manchester City', 'Liverpool', 4, 2, 5, false);
+
+-- Week 6
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester City', 'Manchester United', 4, 1, 6, false),
+('Leicester City', 'Liverpool', 3, 2, 6, false);
+
 
 
 
