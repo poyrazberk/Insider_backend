@@ -60,8 +60,46 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 ```bash
 git clone https://github.com/<poyrazberk>/Insider_backend.git
 cd Insider_backend
+go run .
+```
 
+## Database Schema (SQL)
 
+DROP TABLE IF EXISTS matches;
+DROP TABLE IF EXISTS teams;
+
+CREATE TABLE teams (
+  id            INT AUTO_INCREMENT PRIMARY KEY,
+  name          VARCHAR(50) NOT NULL,
+  strength      INT NOT NULL,
+  points        INT DEFAULT 0,
+  goals_for     INT DEFAULT 0,
+  goals_against INT DEFAULT 0,
+  goal_diff     INT DEFAULT 0,
+  wins          INT DEFAULT 0,
+  draws         INT DEFAULT 0,
+  losses        INT DEFAULT 0
+);
+
+CREATE TABLE matches (
+  id            INT AUTO_INCREMENT PRIMARY KEY,
+  name_home     VARCHAR(50) NOT NULL,
+  name_away     VARCHAR(50) NOT NULL,
+  home_team_id  INT NOT NULL,
+  away_team_id  INT NOT NULL,
+  home_goals    INT,
+  away_goals    INT,
+  week          INT NOT NULL,
+  played        BOOLEAN DEFAULT FALSE,
+  FOREIGN KEY (home_team_id) REFERENCES teams(id),
+  FOREIGN KEY (away_team_id) REFERENCES teams(id)
+);
+
+INSERT INTO teams (name, strength) VALUES
+('Manchester United', 68),
+('Liverpool',         98),
+('Leicester City',    55),
+('Manchester City',   84);
 
 
 
