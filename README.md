@@ -138,28 +138,28 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 ('Manchester City', 'Manchester United', 4, 1, 6, false),
 ('Leicester City', 'Liverpool', 3, 2, 6, false);
 ```
+## API Endpoints 
 
-
-# GET /teams
+### GET /teams
  Lists all teams and their current statistics (win/lose/draw counts, points, ids, and names)
 
-# GET /matches
+### GET /matches
  Lists all matches including their results if played
 
-# POST /play-week
+### POST /play-week
  Plays the next unplayed week and returns updated standings and, if available, championship probabilities
 
-# POST /play-all
+### POST /play-all
  Plays all remaining weeks and returns results week-by-week
 
 
-# POST /reset-teams
+### POST /reset-teams
  Resets all team statistics (points, goals, wins, etc.)
 
-# POST /reset-matches
+### POST /reset-matches
  Resets all matches (clears goals and sets played to false)
 
-# PUT /update-match
+### PUT /update-match
  Manually updates a specific match’s score
  Request Body:
 {
