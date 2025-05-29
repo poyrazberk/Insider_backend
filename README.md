@@ -63,47 +63,51 @@ cd Insider_backend
 go run .
 ```
 
-## Database Schema (SQL)
-
 ## 🗄️ Database Schema (SQL)
 
 ```sql
+-- Drop old tables if they exist
 DROP TABLE IF EXISTS matches;
 DROP TABLE IF EXISTS teams;
 
+-- Create teams table
 CREATE TABLE teams (
-  id            INT AUTO_INCREMENT PRIMARY KEY,
-  name          VARCHAR(50) NOT NULL,
-  strength      INT NOT NULL,
-  points        INT DEFAULT 0,
-  goals_for     INT DEFAULT 0,
-  goals_against INT DEFAULT 0,
-  goal_diff     INT DEFAULT 0,
-  wins          INT DEFAULT 0,
-  draws         INT DEFAULT 0,
-  losses        INT DEFAULT 0
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    strength INT NOT NULL,
+    
+    points INT DEFAULT 0,
+    goals_for INT DEFAULT 0,
+    goals_against INT DEFAULT 0,
+    goal_diff INT DEFAULT 0,
+    wins INT DEFAULT 0,
+    draws INT DEFAULT 0,
+    losses INT DEFAULT 0
 );
 
+-- Create matches table
 CREATE TABLE matches (
-  id            INT AUTO_INCREMENT PRIMARY KEY,
-  name_home     VARCHAR(50) NOT NULL,
-  name_away     VARCHAR(50) NOT NULL,
-  home_team_id  INT NOT NULL,
-  away_team_id  INT NOT NULL,
-  home_goals    INT,
-  away_goals    INT,
-  week          INT NOT NULL,
-  played        BOOLEAN DEFAULT FALSE,
-  FOREIGN KEY (home_team_id) REFERENCES teams(id),
-  FOREIGN KEY (away_team_id) REFERENCES teams(id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name_home VARCHAR(50) NOT NULL,
+    name_away VARCHAR(50) NOT NULL,
+    home_team_id INT NOT NULL,
+    away_team_id INT NOT NULL,
+    home_goals INT,
+    away_goals INT,
+    week INT,
+    played BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (home_team_id) REFERENCES teams(id),
+    FOREIGN KEY (away_team_id) REFERENCES teams(id)
 );
 
+-- Insert sample teams
 INSERT INTO teams (name, strength) VALUES
-  ('Manchester United', 68),
-  ('Liverpool', 98),
-  ('Leicester City', 55),
-  ('Manchester City', 84);
+('Manchester United', 68),
+('Liverpool', 98),
+('Leicester City', 55),
+('Manchester City', 84);
 
+-- Insert matches
 -- Week 1
 INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
 ('Manchester United', 'Liverpool', 1, 2, 1, false),
@@ -133,7 +137,7 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
 ('Manchester City', 'Manchester United', 4, 1, 6, false),
 ('Leicester City', 'Liverpool', 3, 2, 6, false);
-
+```
 
 
 
