@@ -42,94 +42,25 @@ A lightweight backend that **simulates a 4-team Premier-League-style mini-league
 | Simulation | Pure in-memory logic → zero DB I/O per Monte-Carlo run |
 
 
-## Setup & Run Locally
-Prerequisites
-– Go 1.22+
-– MySQL 8 (or compatible)
-– Git
+## Setup & Run Locally  
 
-Steps and	Command / Action
-1️⃣ Clone the repo	bash\ngit clone https://github.com/poyrazberk/Insider_backend.git\ncd Insider_backend\n
-2️⃣ Download Go dependencies	bash\ngo mod tidy\n
-3️⃣ Create the database	sql\nCREATE DATABASE leaguedb;\nUSE leaguedb; -- then run schema.sql or the snippet below\n
-4️⃣ Configure DSN in main.go	go\ndb, _ := sql.Open(\"mysql\", \"root:<your-password>@tcp(127.0.0.1:3306)/leaguedb\")\n
-5️⃣ Run the server	bash\ngo run main.go\n
-6️⃣ Smoke-test	Hit GET http://localhost:8080/ping → returns { "message": "pong" }
+### 1. Prerequisites  
+| Tool | Version | Notes |
+|------|---------|-------|
+| **Go** | 1.22 or later | https://go.dev/dl  
+| **MySQL** | 8.x | running locally on **localhost:3306**  
+| **Git** | latest | for cloning the repo |
 
+> **Optional:** Docker & Docker Compose if you prefer containerised setup.
 
-## Database Schema (SQL)
+---
 
-/* ======== TEAMS & MATCHES SCHEMA ======== */
+### 2. Clone the repository  
 
-DROP TABLE IF EXISTS matches;
-DROP TABLE IF EXISTS teams;
+```bash
+git clone https://github.com/<poyrazberk>/Insider_backend.git
+cd Insider_backend
 
-CREATE TABLE teams (
-    id            INT AUTO_INCREMENT PRIMARY KEY,
-    name          VARCHAR(50) NOT NULL,
-    strength      INT NOT NULL,
-    points        INT DEFAULT 0,
-    goals_for     INT DEFAULT 0,
-    goals_against INT DEFAULT 0,
-    goal_diff     INT DEFAULT 0,
-    wins          INT DEFAULT 0,
-    draws         INT DEFAULT 0,
-    losses        INT DEFAULT 0
-);
-
-CREATE TABLE matches (
-    id            INT AUTO_INCREMENT PRIMARY KEY,
-    name_home     VARCHAR(50) NOT NULL,
-    name_away     VARCHAR(50) NOT NULL,
-    home_team_id  INT NOT NULL,
-    away_team_id  INT NOT NULL,
-    home_goals    INT,
-    away_goals    INT,
-    week          INT NOT NULL,
-    played        BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (home_team_id) REFERENCES teams(id),
-    FOREIGN KEY (away_team_id) REFERENCES teams(id)
-);
-
-/* ======== SEED: 4 TEAMS ======== */
-
-INSERT INTO teams (name, strength) VALUES
-('Manchester United', 68),
-('Liverpool',         98),
-('Leicester City',    55),
-('Manchester City',   84);
-
-/* ======== SEED: 12 MATCHES (6 WEEKS, DOUBLE ROUND ROBIN) ======== */
-
-/* Week 1 */
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
-('Manchester United', 'Liverpool',       1, 2, 1, FALSE),
-('Leicester City',    'Manchester City', 3, 4, 1, FALSE);
-
-/* Week 2 */
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
-('Manchester United', 'Leicester City',  1, 3, 2, FALSE),
-('Liverpool',         'Manchester City', 2, 4, 2, FALSE);
-
-/* Week 3 */
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
-('Manchester United', 'Manchester City', 1, 4, 3, FALSE),
-('Liverpool',         'Leicester City',  2, 3, 3, FALSE);
-
-/* Week 4 (reverse fixtures start) */
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
-('Liverpool',         'Manchester United', 2, 1, 4, FALSE),
-('Manchester City',   'Leicester City',    4, 3, 4, FALSE);
-
-/* Week 5 */
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
-('Leicester City',    'Manchester United', 3, 1, 5, FALSE),
-('Manchester City',   'Liverpool',         4, 2, 5, FALSE);
-
-/* Week 6 */
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
-('Manchester City',   'Manchester United', 4, 1, 6, FALSE),
-('Leicester City',    'Liverpool',         3, 2, 6, FALSE);
 
 
 
