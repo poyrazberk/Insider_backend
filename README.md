@@ -59,74 +59,78 @@ Steps and	Command / Action
 
 ## Database Schema (SQL)
 
+/* ======== TEAMS & MATCHES SCHEMA ======== */
+
 DROP TABLE IF EXISTS matches;
 DROP TABLE IF EXISTS teams;
 
 CREATE TABLE teams (
-
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    strength INT NOT NULL,
-    points INT DEFAULT 0,
-    goals_for INT DEFAULT 0,
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    name          VARCHAR(50) NOT NULL,
+    strength      INT NOT NULL,
+    points        INT DEFAULT 0,
+    goals_for     INT DEFAULT 0,
     goals_against INT DEFAULT 0,
-    goal_diff INT DEFAULT 0,
-    wins INT DEFAULT 0,
-    draws INT DEFAULT 0,
-    losses INT DEFAULT 0
+    goal_diff     INT DEFAULT 0,
+    wins          INT DEFAULT 0,
+    draws         INT DEFAULT 0,
+    losses        INT DEFAULT 0
 );
 
 CREATE TABLE matches (
-
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name_home VARCHAR(50) NOT NULL,
-    name_away VARCHAR(50) NOT NULL,
-    home_team_id INT NOT NULL,
-    away_team_id INT NOT NULL,
-    home_goals INT,
-    away_goals INT,
-    week INT,
-    played BOOLEAN DEFAULT FALSE,
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    name_home     VARCHAR(50) NOT NULL,
+    name_away     VARCHAR(50) NOT NULL,
+    home_team_id  INT NOT NULL,
+    away_team_id  INT NOT NULL,
+    home_goals    INT,
+    away_goals    INT,
+    week          INT NOT NULL,
+    played        BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (home_team_id) REFERENCES teams(id),
     FOREIGN KEY (away_team_id) REFERENCES teams(id)
 );
 
-INSERT INTO teams (name, strength) VALUES \n
-('Manchester United', 68), \n
-('Liverpool', 98), \n
-('Leicester City', 55), \n
-('Manchester City', 84); \n
+/* ======== SEED: 4 TEAMS ======== */
 
--- Week 1\n
-INSERT INTO matches \n
-(name_home, name_away, home_team_id, away_team_id, week, played) VALUES\n
-('Manchester United', 'Liverpool', 1, 2, 1, false),\n
-('Leicester City', 'Manchester City', 3, 4, 1, false);\n
+INSERT INTO teams (name, strength) VALUES
+('Manchester United', 68),
+('Liverpool',         98),
+('Leicester City',    55),
+('Manchester City',   84);
 
--- Week 2\n
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES\n
-('Manchester United', 'Leicester City', 1, 3, 2, false),\n
-('Liverpool', 'Manchester City', 2, 4, 2, false);\n
+/* ======== SEED: 12 MATCHES (6 WEEKS, DOUBLE ROUND ROBIN) ======== */
 
--- Week 3\n
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES\n
-('Manchester United', 'Manchester City', 1, 4, 3, false),\n
-('Liverpool', 'Leicester City', 2, 3, 3, false);\n
+/* Week 1 */
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester United', 'Liverpool',       1, 2, 1, FALSE),
+('Leicester City',    'Manchester City', 3, 4, 1, FALSE);
 
--- Week 4\n
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES\n
-('Liverpool', 'Manchester United', 2, 1, 4, false),\n
-('Manchester City', 'Leicester City', 4, 3, 4, false);\n
+/* Week 2 */
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester United', 'Leicester City',  1, 3, 2, FALSE),
+('Liverpool',         'Manchester City', 2, 4, 2, FALSE);
 
--- Week 5\n
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES\n
-('Leicester City', 'Manchester United', 3, 1, 5, false),\n
-('Manchester City', 'Liverpool', 4, 2, 5, false);\n
+/* Week 3 */
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester United', 'Manchester City', 1, 4, 3, FALSE),
+('Liverpool',         'Leicester City',  2, 3, 3, FALSE);
 
--- Week 6\n
-INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES\n
-('Manchester City', 'Manchester United', 4, 1, 6, false),\n
-('Leicester City', 'Liverpool', 3, 2, 6, false);\n
+/* Week 4 (reverse fixtures start) */
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Liverpool',         'Manchester United', 2, 1, 4, FALSE),
+('Manchester City',   'Leicester City',    4, 3, 4, FALSE);
+
+/* Week 5 */
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Leicester City',    'Manchester United', 3, 1, 5, FALSE),
+('Manchester City',   'Liverpool',         4, 2, 5, FALSE);
+
+/* Week 6 */
+INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, played) VALUES
+('Manchester City',   'Manchester United', 4, 1, 6, FALSE),
+('Leicester City',    'Liverpool',         3, 2, 6, FALSE);
+
 
 
 
