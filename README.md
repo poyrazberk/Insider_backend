@@ -138,7 +138,7 @@ INSERT INTO matches (name_home, name_away, home_team_id, away_team_id, week, pla
 ('Manchester City', 'Manchester United', 4, 1, 6, false),
 ('Leicester City', 'Liverpool', 3, 2, 6, false);
 ```
-## 5API Endpoints 
+## 5.API Endpoints 
 
 ### GET /teams
  Lists all teams and their current statistics (win/lose/draw counts, points, ids, and names)
